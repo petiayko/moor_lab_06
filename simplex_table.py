@@ -29,10 +29,11 @@ class SimplexTable:
 
     # метод определяет, найдено ли оптимальное решение
     def __is_optimal(self):
-        if self.__goal:
-            return not min(self.__table[-1][1:]) > 0
-        else:
-            return not max(self.__table[-1][1:]) < 0
+        return not max(self.__table[-1][1:]) > 0
+        # if self.__goal:
+        #     return not max(self.__table[-1][1:]) > 0
+        # else:
+        #     return not min(self.__table[-1][1:]) < 0
 
     def __get_minuses(self):
         if self.__goal:
@@ -63,7 +64,7 @@ class SimplexTable:
             # случай, когда надо искать оптимальное решение
             max_abs, support_column = -1, -1
             for i in range(1, len(self.__table[-1])):
-                if self.__table[-1][i] < 0 and abs(self.__table[-1][i]) > max_abs:
+                if self.__table[-1][i] > 0 and abs(self.__table[-1][i]) > max_abs:
                     max_abs = abs(self.__table[-1][i])
                     support_column = i
             min_div, support_row = 10 ** 8, -1

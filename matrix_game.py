@@ -1,3 +1,5 @@
+import numpy as np
+
 from simplex_table import SimplexTable
 
 
@@ -39,4 +41,5 @@ class MatrixGame:
     # метод решения задачи
     def solve(self):
         self.__find_strategy(name='A', goal=True, st_letters=('u', 'W'), ans_letters=('x', 'g'))
+        self.__matrix = np.transpose(self.__matrix)
         self.__find_strategy(name='B', goal=False, st_letters=('v', 'Z'), ans_letters=('y', 'h'))
