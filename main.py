@@ -1,3 +1,5 @@
+# Copyright 2021 Peter p.makretskii@gmail.com
+
 from calculation.matrix_game import MatrixGame
 
 # точка входа в программу

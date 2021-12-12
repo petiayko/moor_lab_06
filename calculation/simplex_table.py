@@ -1,4 +1,5 @@
 # Copyright 2021 Peter p.makretskii@gmail.com
+
 from copy import deepcopy as dc
 import numpy as np
 
@@ -27,20 +28,6 @@ class SimplexTable:
         # список индексов базисных переменных
         self.__base = [len(self.__free) + i + 1 for i in range(len(self.__table) - 1)]
 
-    # метод определяет, найдено ли оптимальное решение
-    def __is_optimal(self):
-        return not max(self.__table[-1][1:]) > 0
-        # if self.__goal:
-        #     return not max(self.__table[-1][1:]) > 0
-        # else:
-        #     return not min(self.__table[-1][1:]) < 0
-
-    def __get_minuses(self):
-        if self.__goal:
-            return [i[0] for i in self.__table[:-1] if i[0] > 0]
-        else:
-            return [i[0] for i in self.__table[:-1] if i[0] < 0]
-
     # метод определяет, нужно оптимизировать решение или искать опорное
     def __status(self):
         s_minuses = [i[0] for i in self.__table[:-1] if i[0] < 0]  # минусы столбца свободных членов
@@ -52,7 +39,7 @@ class SimplexTable:
             # запоминаем число отрицательных значений в столбце свободных членов
             self.__minus_count = len(s_minuses)
             return 0
-        if not self.__is_optimal():
+        if max(self.__table[-1][1:]) > 0:
             # оптимальное решение не найдено
             return 1
         return 3

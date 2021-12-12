@@ -1,3 +1,5 @@
+# Copyright 2021 Peter p.makretskii@gmail.com
+
 import numpy as np
 
 from calculation.simplex_table import SimplexTable
