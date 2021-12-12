@@ -1,6 +1,6 @@
 import numpy as np
 
-from simplex_table import SimplexTable
+from calculation.simplex_table import SimplexTable
 
 
 # функция печати ответа на ЗЛП с заданными буквами
@@ -37,9 +37,11 @@ class MatrixGame:
             for i in range(len(strategy)):
                 print(f'{ans_letters[0]}{i + 1} = {round(strategy[i], 3)}')
             print('\n')
+            return price
 
     # метод решения задачи
     def solve(self):
-        self.__find_strategy(name='A', goal=True, st_letters=('u', 'W'), ans_letters=('x', 'g'))
+        price_one = self.__find_strategy(name='A', goal=True, st_letters=('u', 'W'), ans_letters=('x', 'g'))
         self.__matrix = np.transpose(self.__matrix)
-        self.__find_strategy(name='B', goal=False, st_letters=('v', 'Z'), ans_letters=('y', 'h'))
+        price_two = self.__find_strategy(name='B', goal=False, st_letters=('v', 'Z'), ans_letters=('y', 'h'))
+        print(f'h + g = {price_one + price_two}')
